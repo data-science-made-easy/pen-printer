@@ -63,6 +63,6 @@ The tasks data.frame looks like this:
 The tasks data.frame consists of interpollated short lines that describe the major lines resulting from the edge detection. First two columsn (`x`, `y`) are the coordinates (mm), followed by angles of arms (rad) and corresponding pulsewidth of first two servos. `pen_down` indicates whether the short line should be plotted. `error` is a pre-calculated deviation from a straight line between start point and begin point of major line. In practice, this error will larger due to the imprecision of the cheap SG90 servos. Better servos will certainly result in a more accurate drawing.
 
 ## Start R on your RPi
-... in the folder of this repository. `source pi-plot-girl.R` should plot the image that is shown above.
+... in the folder of this repository. `source("pi-plot-girl.R")` should plot the image that is shown above.
 
 Have fun!
