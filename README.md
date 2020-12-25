@@ -2,9 +2,9 @@
 
 # Buy
 
-1. Raspberry Pi
+1. Raspberry Pi (RPi)
 2. PCA9685 controller with three SG90 servos
-3. Power supply for both Rpi and PCA9685
+3. 5V power supply for both RPi (2A) and PCA9685 (1A)
 4. Popsicle sticks
 5. Glue
 6. Clip
@@ -18,11 +18,18 @@ On your PC or Mac install R and required libraries. You can go through the code 
 On your RPi install:
 
 - R; I have R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
-- Install [pca9685servodaemon](https://github.com/data-science-made-easy/pca9685servodaemon) in the same folder as this repository; kudos to [Tim Rowledge](https://github.com/timrowledge)
-- download this repository to both PC and RPi
+- [pca9685servodaemon](https://github.com/data-science-made-easy/pca9685servodaemon) in the same folder as this repository; kudos to [Tim Rowledge](https://github.com/timrowledge)
+
+Download this repository to both PC and RPi.
 
 ### Hardware
-The image shows the first servo is under an angle of `base_angle` = 60° = pi / 3 (small angle with paper).
+Fix (glue) the first servo on two popsicle sticks (top one sticking over the paper) to *e.g.* some wooden plate. Connect the other servos to the first one as in the figure. First try them out following the code below to get the angles right :-) Then connect the servos to the PCA9685 controller and connect the controller to your RPi:
+
+1. [Step 1](https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi)
+2. [Step 2](https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/configuring-your-pi-for-i2c)
+3. [Step 3](https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/hooking-it-up)
+
+The image shows the first servo is under an angle of `base_angle` = 60° = pi / 3 (small angle with paper). After some simulations, this angle seems optimal to me.
 
 ![Photo](img/pen-printer.png)
 
@@ -31,7 +38,7 @@ Run `pc-plot-girl.R`. This will
 
 - load constants
   - update the constants where needed
-  - e.g., the servos are now on channels (s0, first arm) 13, (s1, second arm) 14 and (s2, head with pen) 15; please update these values if you put the servos on different channels on the pca controller
+  - *e.g.*, the servos are now on channels (s0, first arm) 13, (s1, second arm) 14 and (s2, head with pen) 15; please update these values if you put the servos on different channels on the pca controller
 - load calibration details of your servos
   - for the most accurate results, you should calibrate your servos by hand and update `servo-calibration.R`
 - determine the positions within reach of the pen
