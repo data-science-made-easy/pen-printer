@@ -29,7 +29,7 @@ Fix (glue) the first servo on two popsicle sticks (top one sticking over the pap
 2. [Step 2](https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/configuring-your-pi-for-i2c)
 3. [Step 3](https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/hooking-it-up)
 
-The image shows the first servo is under an angle of `base_angle` = 60° = pi / 3 (small angle with paper). After some simulations, this angle seems optimal to me.
+The image shows the popsicle sticks below the first servo are under an angle of `base_angle` = 60° = pi / 3 (small angle with paper). After some simulations, this angle seems optimal to me.
 
 ![Photo](img/pen-printer.png)
 
@@ -37,12 +37,11 @@ The image shows the first servo is under an angle of `base_angle` = 60° = pi / 
 Run `pc-plot-girl.R`. This will
 
 - load constants
-  - update the constants where needed
-  - *e.g.*, the servos are now on channels (s0, first arm) 13, (s1, second arm) 14 and (s2, head with pen) 15; please update these values if you put the servos on different channels on the pca controller
+  - please take a look and update the constants where needed. *E.g.*, the servos are now on channels (s0, first arm) 13, (s1, second arm) 14 and (s2, head with pen) 15; please update these values if you put the servos on different channels on the pca controller
 - load calibration details of your servos
-  - for the most accurate results, you should calibrate your servos by hand and update `servo-calibration.R`
+  - for the most accurate results, you should calibrate your servos by hand and update `servo-calibration.R` accordingly
 - determine the positions within reach of the pen
-- load `img/girl.jpg` and convert to lines
+- load `img/girl.jpg` and convert to lines using an edge detection library
 - maximally upscale these lines to just fit within reachable area
 - plot a4 with reachable area (green) and lines
 - save lines as `tasks.RData`
@@ -61,7 +60,9 @@ The tasks data.frame looks like this:
 54.07519 147.7014 1.719867 0.6423017 1634.872 2238.580    FALSE 0.03410046
 ````
 
-The tasks data.frame consists of interpollated minor lines that describe the major lines resulting from the edge detection. First two columsn (`x`, `y`) are the coordinates (mm), followed by angles of arms (rad) and corresponding pulsewidth of first two servos. `pen_down` indicates whether the minor line should be plotted. `error` is a pre-calculated deviation from a straight line between start point and begin point of major line. Practically this error is larger.
+The tasks data.frame consists of interpollated short lines that describe the major lines resulting from the edge detection. First two columsn (`x`, `y`) are the coordinates (mm), followed by angles of arms (rad) and corresponding pulsewidth of first two servos. `pen_down` indicates whether the short line should be plotted. `error` is a pre-calculated deviation from a straight line between start point and begin point of major line. In practice, this error will larger due to the imprecision of the cheap SG90 servos. Better servos will certainly result in a more accurate drawing.
 
 ## Start R on your RPi
-`source pi-plot-girl.R` should plot the image that is shown above.
+... in the folder of this repository. `source pi-plot-girl.R` should plot the image that is shown above.
+
+Have fun!
