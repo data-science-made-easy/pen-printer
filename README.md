@@ -13,7 +13,7 @@
 Ad 1. I have `cat /proc/device-tree/model` Raspberry Pi Model B Plus Rev 1.2 with 'Linux rpi 5.4.51+ #1333' as operating system.
 
 ## Prerequisites
-On your PC or Mac install R and required libraries. You can go through the code to find out which libraries you need to install. Alternatively, you can just run the code and find out by trial and error.
+Clone this repository to both your RPi and your PC or Mac. Also install R and required libraries on both RPi and PC or Mac. You can go through the code to find out which libraries you need to install. Alternatively, you can just run the code and find out by trial and error.
 
 On your RPi install:
 
